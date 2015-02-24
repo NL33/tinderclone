@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  TinderClone
 //
-//  Created by Sean on 2/12/15.
-//  Copyright (c) 2015 Sean. All rights reserved.
+//  Created by NL33 on 2/12/15.
+//  Copyright (c) 2015 NL33. All rights reserved.
 //
 
 import UIKit
@@ -16,6 +16,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+       Parse.setApplicationId("Nx47gJZx9yExd1FPnsfz9dvkNoUQoDgwCYVauRW8", clientKey: "i1UZV2VUmN3yjatTpoUPqBsIZoeQp3P2FT8q5KgC") //both numbers from Parse keys. First number is Application Id, Second Number is client key
+        
+        PFFacebookUtils.initializeFacebook()
+        
+        //the following is for setting up Push Notifications:
+        var pushSettings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: .Alert, categories: nil)  //this just describes what type of notification we want to use. We are here choosing "alert"
+        
+        application.registerUserNotificationSettings(pushSettings) //here we register the user notification settings
+        
+        application.registerForRemoteNotifications() //here we register for remote notifications
+        
         return true
     }
 
@@ -33,14 +45,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
 
-    func applicationDidBecomeActive(application: UIApplication) {
+    func applicationDidBecomeActive(application: UIApplication!) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
+    
+    func application(application: UIApplication,
+        openURL url: NSURL,
+        sourceApplication: String?,
+        annotation: AnyObject?) -> Bool {
+            return FBAppCall.handleOpenURL(url, sourceApplication:sourceApplication,
+                withSession:PFFacebookUtils.session())
+    }
+    
+    func applicationDidBecomeActive(application: UIApplication) {
+        FBAppCall.handleDidBecomeActiveWithSession(PFFacebookUtils.session())
+    }
+ 
+  
 }
 

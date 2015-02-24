@@ -2,8 +2,8 @@
 //  TinderCloneTests.swift
 //  TinderCloneTests
 //
-//  Created by Sean on 2/12/15.
-//  Copyright (c) 2015 Sean. All rights reserved.
+//  Created by NL33 on 2/12/15.
+//  Copyright (c) 2015 NL33. All rights reserved.
 //
 
 import UIKit
