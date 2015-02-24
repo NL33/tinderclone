@@ -1,6 +1,6 @@
-iOS (Swift) app: reproducing functionality of Tinder: 
+iOS (Swift) app: reproducing functionality of tinder mobile app. Users: 
 
---users log in through Facebook, 
+--log in through Facebook, 
 
 --express preferences, 
 
